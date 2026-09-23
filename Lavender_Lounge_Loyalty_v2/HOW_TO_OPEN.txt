@@ -1,0 +1,21 @@
+LAVENDER LOUNGE - HOW TO OPEN
+
+1. Extract the ZIP file.
+2. Open the folder Lavender_Lounge_Loyalty_v2.
+3. Double-click START_LAVENDER.bat.
+4. The website opens automatically.
+
+Customer:
+http://127.0.0.1:5000
+
+Admin:
+http://127.0.0.1:5000/admin/login
+
+Temporary admin password:
+lavender-admin
+
+Keep the black window open while using the website.
+
+If Windows says Python is missing:
+- Install Python from https://www.python.org/downloads/
+- Tick "Add Python to PATH" during installation.

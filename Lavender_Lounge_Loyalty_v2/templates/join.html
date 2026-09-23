@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Join · Lavender Lounge Loyalty{% endblock %}
+{% block content %}
+<div class="narrow">
+  <a class="back" href="{{ url_for('home') }}">← Back</a>
+  <form class="panel form-card" method="post">
+    <span class="eyebrow">New customer</span>
+    <h1>Join Lavender Loyalty</h1>
+
+    <label>Full name</label>
+    <input type="text" name="name" placeholder="Your full name" required>
+
+    <label>Phone number</label>
+    <input type="tel" name="phone" placeholder="+961 ..." required>
+
+    <label>Email</label>
+    <input type="email" name="email" placeholder="you@example.com" required>
+
+    <button>Create my loyalty account</button>
+    <p class="tiny">We will send a 6-digit verification code to your email.</p>
+  </form>
+</div>
+{% endblock %}

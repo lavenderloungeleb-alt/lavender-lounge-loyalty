@@ -1,0 +1,55 @@
+LAVENDER LOUNGE LOYALTY - ROLE BASED VERSION
+
+CUSTOMER
+http://127.0.0.1:5000
+- Join with name, phone, email
+- Login with email verification code
+- View QR card, points, rewards, history
+
+ADMIN
+http://127.0.0.1:5000/admin/login
+Email: lavenderlounge.leb@gmail.com
+Temporary password: lavender-admin
+
+ADMIN CAN:
+- Add/edit/delete clients
+- Manually adjust points
+- Record purchases
+- Redeem rewards
+- View full history
+- Send direct email
+- Edit automatic email templates
+- Upload/change logo
+- Add/disable/delete offers
+- Change points earning rate
+- Create/disable staff accounts
+- Change admin account
+
+STAFF
+http://127.0.0.1:5000/staff/login
+Default email: staff@lavenderlounge.local
+Default password: lavender-staff
+
+STAFF CAN:
+- Scan customer QR with phone camera
+- View name, email, phone and points
+- Record purchase
+- Redeem reward
+- View activity history
+
+STAFF CANNOT:
+- Adjust points manually
+- Change offers
+- Change logo
+- Change emails
+- Change loyalty settings
+- Manage clients
+- Manage staff
+
+PHONE CAMERA NOTE
+For camera access on a real phone, the public site should be deployed using HTTPS.
+The scanner uses the browser camera.
+
+EMAIL
+Sender: lavenderlounge.leb@gmail.com
+Use a Google App Password, not the normal Gmail password.

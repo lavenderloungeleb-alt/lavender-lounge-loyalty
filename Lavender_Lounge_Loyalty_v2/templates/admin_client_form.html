@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{% if mode == 'add' %}Add Client{% else %}Edit Client{% endif %} · Lavender Lounge{% endblock %}
+{% block content %}
+<div class="narrow wide-narrow">
+  <a class="back" href="{{ url_for('admin_clients') }}">← Back to clients</a>
+  <form class="panel form-card" method="post">
+    <span class="eyebrow">Admin</span>
+    <h1>{% if mode == 'add' %}Add client{% else %}Edit client{% endif %}</h1>
+
+    <label>Full name</label>
+    <input name="name" value="{{ customer.name if customer else '' }}" required>
+
+    <label>Email</label>
+    <input type="email" name="email" value="{{ customer.email if customer else '' }}" required>
+
+    <label>Phone number</label>
+    <input name="phone" value="{{ customer.phone if customer else '' }}" required>
+
+    {% if mode == 'add' %}
+    <label>Starting points</label>
+    <input type="number" name="points" value="0" min="0">
+    {% endif %}
+
+    <button>{% if mode == 'add' %}Create client{% else %}Save changes{% endif %}</button>
+  </form>
+</div>
+{% endblock %}

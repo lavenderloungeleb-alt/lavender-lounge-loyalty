@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Program Settings{% endblock %}
+{% block content %}
+<div class="narrow wide-narrow"><form class="panel form-card" method="post">
+<span class="eyebrow">Admin only</span><h1>Loyalty Program</h1>
+<label>Points earned per 1 unit of purchase</label>
+<input type="number" step="0.01" min="0.01" name="points_per_currency" value="{{ points_per_currency }}" required>
+<p class="tiny">Example: 1 means a $25 purchase earns 25 points.</p>
+<button>Save program</button></form></div>
+{% endblock %}

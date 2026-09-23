@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="narrow">
+  <form class="panel form-card" method="post">
+    <span class="eyebrow">Verification</span>
+    <h1>Check your email</h1>
+    <p>Enter the 6-digit code sent to <strong>{{ email }}</strong>.</p>
+    <input class="code-input" name="code" maxlength="6" inputmode="numeric" autocomplete="one-time-code" required>
+    <button>Verify</button>
+  </form>
+</div>
+{% endblock %}

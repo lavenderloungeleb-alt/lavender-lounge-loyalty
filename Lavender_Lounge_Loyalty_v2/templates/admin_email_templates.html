@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Email Templates{% endblock %}
+{% block content %}
+<div class="admin-head"><div><span class="eyebrow">Admin only</span><h1>Email Templates</h1><p class="muted">Available placeholders: {name}, {points}, {balance}, {reward}</p></div></div>
+<form class="panel form-card" method="post">
+<h2>Welcome email</h2><label>Subject</label><input name="email_welcome_subject" value="{{ values.email_welcome_subject }}">
+<label>Body</label><textarea name="email_welcome_body" rows="6">{{ values.email_welcome_body }}</textarea>
+<hr><h2>Points email</h2><label>Subject</label><input name="email_points_subject" value="{{ values.email_points_subject }}">
+<label>Body</label><textarea name="email_points_body" rows="6">{{ values.email_points_body }}</textarea>
+<hr><h2>Reward email</h2><label>Subject</label><input name="email_redeem_subject" value="{{ values.email_redeem_subject }}">
+<label>Body</label><textarea name="email_redeem_body" rows="6">{{ values.email_redeem_body }}</textarea>
+<button>Save email templates</button></form>
+{% endblock %}

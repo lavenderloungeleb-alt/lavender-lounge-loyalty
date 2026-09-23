@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="admin-head">
+  <div><span class="eyebrow">Admin only</span><h1>Dashboard</h1><p class="muted">Full control of loyalty program.</p></div>
+  <a class="button-link" href="{{ url_for('admin_client_add') }}">+ Add client</a>
+</div>
+<div class="stats">
+  <div class="stat"><span>Clients</span><strong>{{ stats.customers }}</strong></div>
+  <div class="stat"><span>Points</span><strong>{{ stats.points }}</strong></div>
+  <div class="stat"><span>Transactions</span><strong>{{ stats.txns }}</strong></div>
+  <div class="stat"><span>Active staff</span><strong>{{ stats.staff }}</strong></div>
+</div>
+<div class="admin-grid">
+  <a class="panel admin-tile" href="{{ url_for('admin_clients') }}"><strong>Clients</strong><span>View, edit, add, delete and adjust points.</span></a>
+  <a class="panel admin-tile" href="{{ url_for('admin_rewards') }}"><strong>Offers & Rewards</strong><span>Add, disable or delete loyalty offers.</span></a>
+  <a class="panel admin-tile" href="{{ url_for('admin_staff') }}"><strong>Staff Accounts</strong><span>Create and disable staff access.</span></a>
+  <a class="panel admin-tile" href="{{ url_for('admin_branding') }}"><strong>Logo</strong><span>Upload the Lavender Lounge logo.</span></a>
+  <a class="panel admin-tile" href="{{ url_for('admin_email_templates') }}"><strong>Email Templates</strong><span>Edit automatic email subject and content.</span></a>
+  <a class="panel admin-tile" href="{{ url_for('admin_program_settings') }}"><strong>Loyalty Program</strong><span>Change points earned per purchase amount.</span></a>
+</div>
+{% endblock %}

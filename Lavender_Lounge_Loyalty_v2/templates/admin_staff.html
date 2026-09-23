@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Staff Accounts{% endblock %}
+{% block content %}
+<div class="admin-head"><div><span class="eyebrow">Admin only</span><h1>Staff Accounts</h1></div></div>
+<div class="two-col">
+<form class="panel" method="post"><input type="hidden" name="action" value="add"><h2>Add staff</h2>
+<label>Name</label><input name="name" required><label>Email</label><input type="email" name="email" required>
+<label>Temporary password</label><input type="password" name="password" required><button>Create staff account</button></form>
+<div class="panel"><h2>Staff list</h2>
+{% for s in staff_rows %}
+<div class="reward-admin-row"><div><strong>{{ s.name }}</strong><span>{{ s.email }} · {% if s.active %}Active{% else %}Disabled{% endif %}</span></div>
+<form method="post"><input type="hidden" name="action" value="toggle"><input type="hidden" name="staff_id" value="{{ s.id }}">
+<button class="small-button">{{ "Disable" if s.active else "Enable" }}</button></form></div>
+{% endfor %}</div></div>
+{% endblock %}

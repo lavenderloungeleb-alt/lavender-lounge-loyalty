@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="narrow">
+  <form class="panel form-card" method="post">
+    <span class="eyebrow">Lavender Lounge Admin</span>
+    <h1>Admin login</h1>
+
+    <label>Admin email</label>
+    <input type="email" name="email" placeholder="lavenderlounge.leb@gmail.com" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button>Sign in</button>
+  </form>
+</div>
+{% endblock %}

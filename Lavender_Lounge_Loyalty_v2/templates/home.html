@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Lavender Lounge Loyalty{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <span class="eyebrow">Lavender Lounge Loyalty</span>
+    <h1>Rewards made simple.</h1>
+    <p class="lead">Join once, collect points, unlock rewards and access your loyalty card securely by email.</p>
+  </div>
+
+  <div class="choice-stack">
+    <a class="choice-card" href="{{ url_for('join') }}">
+      <span class="choice-icon">+</span>
+      <div>
+        <strong>Join Lavender Loyalty</strong>
+        <p>New customer? Create your account with name, phone and email.</p>
+      </div>
+    </a>
+
+    <a class="choice-card" href="{{ url_for('customer_login') }}">
+      <span class="choice-icon">→</span>
+      <div>
+        <strong>I already have an account</strong>
+        <p>Enter your email and receive a secure login code.</p>
+      </div>
+    </a>
+  </div>
+</section>
+<div class="portal-links">
+  <a href="{{ url_for('staff_login') }}">Staff access</a>
+  <a href="{{ url_for('admin_login') }}">Admin access</a>
+</div>
+
+<section class="benefits">
+  <div class="mini-card"><strong>Earn</strong><span>Collect points with each eligible purchase.</span></div>
+  <div class="mini-card"><strong>Unlock</strong><span>Redeem rewards when your balance grows.</span></div>
+  <div class="mini-card"><strong>Scan</strong><span>Show your personal QR code at Lavender Lounge.</span></div>
+</section>
+{% endblock %}
