@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Logo{% endblock %}
+{% block content %}
+<div class="narrow wide-narrow"><form class="panel form-card" method="post" enctype="multipart/form-data">
+<span class="eyebrow">Admin only</span><h1>Logo</h1>
+{% if brand_logo %}<img class="logo-preview" src="{{ url_for('uploaded_file', filename=brand_logo) }}">{% endif %}
+<label>Upload logo</label><input type="file" name="logo" accept=".png,.jpg,.jpeg,.webp" required>
+<button>Save logo</button></form></div>
+{% endblock %}

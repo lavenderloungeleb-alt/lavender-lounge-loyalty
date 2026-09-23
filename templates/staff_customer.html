@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ customer.name }} · Staff{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('staff_scanner') }}">← Scan another client</a>
+<div class="admin-customer-head">
+<div><span class="eyebrow">Staff client view</span><h1>{{ customer.name }}</h1><p>{{ customer.email }} · {{ customer.phone }}</p></div>
+<div class="big-balance">{{ customer.points }}<span>points</span></div>
+</div>
+<div class="staff-notice">Point adjustment is locked. Only an admin can adjust points manually.</div>
+<div class="two-col">
+<form class="panel" method="post"><input type="hidden" name="action" value="purchase"><h2>Record purchase</h2>
+<label>Purchase amount</label><input type="number" min="0" step="0.01" name="amount" required>
+<label>Note</label><input name="note"><button>Record purchase</button></form>
+<form class="panel" method="post"><input type="hidden" name="action" value="redeem"><h2>Redeem reward</h2>
+<label>Reward</label><select name="reward_id">{% for r in rewards %}<option value="{{ r.id }}">{{ r.title }} — {{ r.points_cost }} pts</option>{% endfor %}</select>
+<button>Redeem reward</button></form>
+</div>
+<div class="panel table-panel"><h2>Activity history</h2>
+<table><thead><tr><th>Date</th><th>Type</th><th>Note</th><th>By</th><th>Points</th></tr></thead>
+<tbody>{% for t in txns %}<tr><td>{{ t.created_at[:16].replace("T"," ") }}</td><td>{{ t.kind }}</td><td>{{ t.note or "—" }}</td><td>{{ t.performed_by or "System" }}</td><td class="{% if t.points >= 0 %}plus{% else %}minus{% endif %}">{% if t.points >= 0 %}+{% endif %}{{ t.points }}</td></tr>{% else %}<tr><td colspan="5">No activity yet.</td></tr>{% endfor %}</tbody></table>
+</div>
+{% endblock %}

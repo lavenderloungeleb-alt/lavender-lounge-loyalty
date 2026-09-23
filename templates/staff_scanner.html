@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Scan Client QR{% endblock %}
+{% block content %}
+<div class="scanner-page">
+  <span class="eyebrow">Staff</span><h1>Scan client QR</h1>
+  <p class="lead">Use the phone camera to scan the customer's Lavender Lounge QR code.</p>
+  <div class="panel">
+    <div id="reader"></div>
+    <p class="tiny">Camera access requires HTTPS on a public website, or localhost during testing.</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://unpkg.com/html5-qrcode"></script>
+<script>
+function onScanSuccess(decodedText) {
+  try {
+    const url = new URL(decodedText);
+    window.location.href = url.pathname + url.search;
+  } catch(e) {
+    window.location.href = decodedText;
+  }
+}
+const scanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 }, false);
+scanner.render(onScanSuccess);
+</script>
+{% endblock %}

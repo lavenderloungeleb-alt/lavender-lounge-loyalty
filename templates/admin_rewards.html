@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Offers & Rewards{% endblock %}
+{% block content %}
+<div class="admin-head"><div><span class="eyebrow">Admin only</span><h1>Offers & Rewards</h1></div></div>
+<div class="two-col">
+<form class="panel" method="post"><input type="hidden" name="action" value="add"><h2>Add offer</h2>
+<label>Offer name</label><input name="title" required>
+<label>Points required</label><input type="number" min="1" name="points_cost" required>
+<button>Add offer</button></form>
+<div class="panel"><h2>Current offers</h2>
+{% for r in rewards %}
+<div class="reward-admin-row"><div><strong>{{ r.title }}</strong><span>{{ r.points_cost }} pts · {% if r.active %}Active{% else %}Disabled{% endif %}</span></div>
+<div class="inline-actions">
+<form method="post"><input type="hidden" name="action" value="toggle"><input type="hidden" name="reward_id" value="{{ r.id }}"><button class="small-button">{{ "Disable" if r.active else "Enable" }}</button></form>
+<form method="post" onsubmit="return confirm('Delete this offer?');"><input type="hidden" name="action" value="delete"><input type="hidden" name="reward_id" value="{{ r.id }}"><button class="small-button danger-button">Delete</button></form>
+</div></div>
+{% endfor %}</div></div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}My Loyalty Card{% endblock %}
+{% block content %}
+<div class="card-grid">
+  <section class="loyalty-card">
+    <div class="card-top">
+      <div>
+        <span class="eyebrow light">Lavender Lounge</span>
+        <h1>{{ customer.name }}</h1>
+        <p>{{ customer.email }} · {{ customer.phone }}</p>
+      </div>
+      <div class="points">{{ customer.points }}<small>points</small></div>
+    </div>
+
+    <div class="progress-wrap">
+      {% if next_reward %}
+        {% set progress = (customer.points / next_reward.points_cost * 100) %}
+        <div class="progress"><span style="width: {{ [progress,100]|min }}%"></span></div>
+        <p>{{ next_reward.points_cost - customer.points }} points until <strong>{{ next_reward.title }}</strong></p>
+      {% else %}
+        <div class="progress"><span style="width:100%"></span></div>
+        <p>You have unlocked all current reward levels.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="panel qr-panel">
+    <h2>Your personal QR</h2>
+    <p>Show this at Lavender Lounge.</p>
+    <iframe title="QR" class="qr-frame" src="{{ url_for('qr_image', token=customer.qr_token) }}"></iframe>
+  </section>
+</div>
+
+<section class="two-col">
+  <div class="panel">
+    <h2>Rewards</h2>
+    <div class="reward-list">
+      {% for r in rewards %}
+      <div class="reward-row {% if customer.points >= r.points_cost %}unlocked{% endif %}">
+        <div><strong>{{ r.title }}</strong><span>{{ r.points_cost }} points</span></div>
+        <b>{% if customer.points >= r.points_cost %}Unlocked{% else %}Locked{% endif %}</b>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Recent activity</h2>
+    {% if txns %}
+      <div class="activity">
+        {% for t in txns %}
+        <div class="activity-row">
+          <div>
+            <strong>{{ t.note or t.kind|title }}</strong>
+            <span>{{ t.created_at[:10] }}</span>
+          </div>
+          <b class="{% if t.points >= 0 %}plus{% else %}minus{% endif %}">
+            {% if t.points >= 0 %}+{% endif %}{{ t.points }}
+          </b>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">No activity yet.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

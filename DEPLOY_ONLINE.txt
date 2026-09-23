@@ -1,0 +1,58 @@
+LAVENDER LOUNGE LOYALTY — PUBLIC PHONE DEPLOYMENT
+
+Recommended host: Railway.
+
+1. CREATE A PRIVATE GITHUB REPOSITORY
+Create a private repository named:
+lavender-lounge-loyalty
+
+Upload ALL files from this project folder.
+Never upload your Gmail App Password.
+
+2. CREATE A RAILWAY PROJECT
+Open Railway.
+Choose New Project -> Deploy from GitHub repo.
+Select lavender-lounge-loyalty.
+
+3. ADD PERSISTENT STORAGE
+In the Railway project, add a Volume to the web service.
+Mount path:
+/data
+
+This keeps customers, points, history and uploaded logo after redeploys.
+
+4. ADD VARIABLES
+In Railway -> your web service -> Variables, add:
+
+SECRET_KEY=5gcpqjtahyZlIOnkZXbCyWCkn2SeBojEb1gkggWGpIg
+GMAIL_ADDRESS=lavenderlounge.leb@gmail.com
+GMAIL_APP_PASSWORD=<YOUR GOOGLE APP PASSWORD>
+ADMIN_EMAIL=lavenderlounge.leb@gmail.com
+ADMIN_PASSWORD=<CHOOSE A STRONG PASSWORD>
+DB_PATH=/data/loyalty.db
+UPLOAD_DIR=/data/uploads
+
+5. GENERATE THE PUBLIC HTTPS DOMAIN
+Service -> Settings -> Networking -> Generate Domain.
+
+Railway will give you an HTTPS address similar to:
+https://lavender-lounge-loyalty-production.up.railway.app
+
+CUSTOMER:
+https://YOUR-DOMAIN/
+
+STAFF:
+https://YOUR-DOMAIN/staff/login
+
+ADMIN:
+https://YOUR-DOMAIN/admin/login
+
+6. CUSTOM DOMAIN (OPTIONAL)
+Later connect:
+https://loyalty.lavenderlounge.com
+
+IMPORTANT
+- Change the temporary admin password.
+- Create individual staff accounts in Admin -> Staff.
+- Disable the default staff account when real staff accounts are ready.
+- Keep the Google App Password only in Railway Variables.

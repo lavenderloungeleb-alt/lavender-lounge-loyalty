@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Admin Settings · Lavender Lounge{% endblock %}
+{% block content %}
+<div class="narrow wide-narrow">
+  <form class="panel form-card" method="post">
+    <span class="eyebrow">Admin account</span>
+    <h1>Settings</h1>
+
+    <label>Admin name</label>
+    <input name="name" value="{{ admin.name }}" required>
+
+    <label>Admin email</label>
+    <input type="email" name="email" value="{{ admin.email }}" required>
+
+    <hr>
+
+    <label>Current password</label>
+    <input type="password" name="current_password" placeholder="Only needed to change password">
+
+    <label>New password</label>
+    <input type="password" name="new_password" placeholder="Leave blank to keep current password">
+
+    <button>Save settings</button>
+  </form>
+</div>
+{% endblock %}

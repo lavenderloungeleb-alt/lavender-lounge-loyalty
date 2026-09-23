@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Staff Login{% endblock %}
+{% block content %}
+<div class="narrow"><form class="panel form-card" method="post">
+<span class="eyebrow">Staff access</span><h1>Staff login</h1>
+<label>Email</label><input type="email" name="email" required>
+<label>Password</label><input type="password" name="password" required>
+<button>Sign in</button><p class="tiny">Staff cannot adjust client points or change program settings.</p>
+</form></div>
+{% endblock %}

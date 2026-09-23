@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Lavender Lounge{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('home') }}">
+    {% if brand_logo %}
+      <img class="brand-logo" src="{{ url_for('uploaded_file', filename=brand_logo) }}" alt="Lavender Lounge logo">
+    {% else %}
+      <span class="brand-mark">L</span>
+    {% endif %}
+    <span>Lavender Lounge</span>
+  </a>
+  <nav class="top-actions">
+    {% if session.get('admin_id') %}
+      <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('admin_clients') }}">Clients</a>
+      <a href="{{ url_for('admin_rewards') }}">Offers</a>
+      <a href="{{ url_for('admin_staff') }}">Staff</a>
+      <a href="{{ url_for('admin_branding') }}">Logo</a>
+      <a href="{{ url_for('admin_email_templates') }}">Emails</a>
+      <a href="{{ url_for('admin_program_settings') }}">Program</a>
+      <a href="{{ url_for('admin_settings') }}">Account</a>
+      <a href="{{ url_for('admin_logout') }}">Logout</a>
+    {% elif session.get('staff_id') %}
+      <a href="{{ url_for('staff_scanner') }}">Scan QR</a>
+      <a href="{{ url_for('staff_logout') }}">Logout</a>
+    {% elif session.get('customer_id') %}
+      <a href="{{ url_for('card') }}">My card</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category,message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Lavender Lounge Loyalty</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>
